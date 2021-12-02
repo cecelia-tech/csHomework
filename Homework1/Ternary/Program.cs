@@ -6,7 +6,14 @@ namespace Ternary
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("Enter first integer: ");
+            int countFrom = int.Parse(Console.ReadLine());
+            Console.Write("Enter second integer: ");
+            int countTo = int.Parse(Console.ReadLine());
+
+            TernaryConvertor ternaryConvertor = new TernaryConvertor();
+
+            ternaryConvertor.CheckForAppropriateInteger(countFrom, countTo);
         }
     }
 }
