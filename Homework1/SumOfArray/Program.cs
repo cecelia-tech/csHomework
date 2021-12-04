@@ -6,7 +6,12 @@ namespace SumOfArray
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Enter at least two integer digits: ");
+            string userInputNumbers = Console.ReadLine();
+
+            SumBetweenNumbers sumOfArray = new SumBetweenNumbers();
+            Console.WriteLine(userInputNumbers);
+            Console.WriteLine(sumOfArray.SumOfRequaredNumbers(userInputNumbers));
         }
     }
 }
