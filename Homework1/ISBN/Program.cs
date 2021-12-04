@@ -6,7 +6,11 @@ namespace ISBN
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Enter 9 integer digits: ");
+            string numbersArray = Console.ReadLine();
+
+            Isbn isbn = new Isbn();
+            isbn.IsbnNumericCode(numbersArray);
         }
     }
 }
