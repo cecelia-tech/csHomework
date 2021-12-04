@@ -6,7 +6,7 @@ namespace SumOfArray
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter at least two integer digits: ");
+            Console.WriteLine("Enter at least two integer digits separated by comma: ");
             string userInputNumbers = Console.ReadLine();
 
             SumBetweenNumbers sumOfArray = new SumBetweenNumbers();
