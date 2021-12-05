@@ -8,6 +8,27 @@ namespace ISBN
 {
     class Isbn
     {
+        //Method combines ISBN code
+        public void IsbnNumericCode(string userInput)
+        {
+            string finalIsbn = "ISBN ";
+
+            for (int i = 0; i < userInput.Length; i++)
+            {
+                if (i == 0 || i == 6 || i == 8)
+                {
+                    finalIsbn += userInput[i] + "-";
+                }
+                else
+                {
+                    finalIsbn += userInput[i];
+                }
+            }
+            string checkDigit = StringToIntArrayConvertor(userInput);
+
+            Print(finalIsbn += checkDigit);
+        }
+
         //This method takes a string and conversts to int array
         public string StringToIntArrayConvertor(string numbersInString)
         {
@@ -53,26 +74,7 @@ namespace ISBN
             }
         }
 
-        //Method combines ISBN code
-        public void IsbnNumericCode(string userInput)
-        {
-            string finalIsbn = "ISBN ";
 
-            for (int i = 0; i < userInput.Length; i++)
-            {
-                if (i == 0 || i == 6 || i == 8)
-                {
-                    finalIsbn += userInput[i] + "-";
-                }
-                else
-                {
-                    finalIsbn += userInput[i];
-                }
-            }
-            string checkDigit = StringToIntArrayConvertor(userInput);
-
-            Print(finalIsbn += checkDigit);
-        }
 
         public void Print(string isbnCode)
         {

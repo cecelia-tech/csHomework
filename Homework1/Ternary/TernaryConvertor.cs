@@ -1,13 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Ternary
 {
     class TernaryConvertor
     {
+        //Method checks for numbers satisfying the task in the range given
+        public void CheckForAppropriateInteger(int numberFrom, int numberTo)
+        {
+            for (int i = numberFrom; i <= numberTo; i++)
+            {
+                if (CheckForTwos(ConvertToTernary(i)))
+                {
+                    NumberPrint(i);
+                }
+            }
+        }
+
+        //checks how many number 2 has the string and returns true if it has two 2s
+        public bool CheckForTwos(StringBuilder ternaryString)
+        {
+            int numberOf2InString = 0;
+
+            for (int i = 0; i < ternaryString.Length; i++)
+            {
+                if (ternaryString[i] == '2')
+                {
+                    numberOf2InString++;
+                }
+            }
+            return numberOf2InString == 2;
+        }
+
         //This method converts given number  to ternary number system and returns
         //it as a string
         public StringBuilder ConvertToTernary(int number)
@@ -33,33 +57,6 @@ namespace Ternary
             }
 
             return ternaryString;
-        }
-
-        //checks how many number 2 has the string and returns true if it has two 2s
-        public bool CheckForTwos(StringBuilder ternaryString)
-        {
-            int numberOf2InString = 0;
-
-            for (int i = 0; i < ternaryString.Length; i++)
-            {
-                if (ternaryString[i] == '2')
-                {
-                    numberOf2InString++;
-                }
-            }
-            return numberOf2InString == 2;
-        }
-
-        //Method checks for numbers satisfying the task in the range given
-        public void CheckForAppropriateInteger(int numberFrom, int numberTo)
-        {
-            for (int i = numberFrom; i <= numberTo; i++)
-            {
-                if (CheckForTwos(ConvertToTernary(i)))
-                {
-                    NumberPrint(i);
-                }
-            }
         }
 
         public void NumberPrint(int number)
