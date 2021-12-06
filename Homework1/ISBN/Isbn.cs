@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ISBN
 {
-    class Isbn
+    internal class Isbn
     {
         //Method combines ISBN code
-        public void IsbnNumericCode(string userInput)
+        public string GetIsbnNumericCode(string userInput)
         {
             string finalIsbn = "ISBN ";
 
@@ -24,13 +20,15 @@ namespace ISBN
                     finalIsbn += userInput[i];
                 }
             }
-            string checkDigit = StringToIntArrayConvertor(userInput);
+            var arrayOfNumbers = ConvertStringToIntArray(userInput);
+            int sumOfMultipliedNumbers = SumAndMultiplyNumbers(arrayOfNumbers);
+            string checkDigit = CheckDigit(sumOfMultipliedNumbers);
 
-            Print(finalIsbn += checkDigit);
+            return finalIsbn += checkDigit;
         }
 
         //This method takes a string and conversts to int array
-        public string StringToIntArrayConvertor(string numbersInString)
+        public int[] ConvertStringToIntArray(string numbersInString)
         {
             int[] arrayOfNum = new int[numbersInString.Length];
 
@@ -39,11 +37,11 @@ namespace ISBN
                 arrayOfNum[i] = (int)Char.GetNumericValue(numbersInString[i]);
             }
 
-            return MultiplicationOfNumbers(arrayOfNum);
+            return arrayOfNum;
         }
 
         //Multiplies and sums up the array of integers accordingly to ISBN counting standart
-        public string MultiplicationOfNumbers(int[] arrayOfNumbers)
+        public int SumAndMultiplyNumbers(int[] arrayOfNumbers)
         {
             int sumOfMultipliedNumbers = 0;
 
@@ -53,7 +51,7 @@ namespace ISBN
 
             }
 
-            return CheckDigit(sumOfMultipliedNumbers);
+            return sumOfMultipliedNumbers;
 
         }
 
@@ -72,13 +70,6 @@ namespace ISBN
 
                 return digit.ToString();
             }
-        }
-
-
-
-        public void Print(string isbnCode)
-        {
-            Console.WriteLine(isbnCode);
         }
     }
 }

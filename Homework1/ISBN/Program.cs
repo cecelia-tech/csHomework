@@ -10,7 +10,7 @@ namespace ISBN
             string numbersArray = Console.ReadLine();
 
             Isbn isbn = new Isbn();
-            isbn.IsbnNumericCode(numbersArray);
+            Console.WriteLine(isbn.GetIsbnNumericCode(numbersArray));
         }
     }
 }
