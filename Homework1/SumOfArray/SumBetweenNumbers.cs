@@ -2,14 +2,14 @@
 
 namespace SumOfArray
 {
-    class SumBetweenNumbers
+    internal class SumBetweenNumbers
     {
         //Calculates the sum of numbers between the smallest and the biggest values in the array
-        public void SumOfRequaredNumbers(string userInputNumbers)
+        public int PrintSumOfRequaredNumbers(string userInputNumbers)
         {
-            int[] convertedNumbers = StringToInt(userInputNumbers);
-            int maxIndex = MaxValueIndex(convertedNumbers);
-            int minIndex = MinValueIndex(convertedNumbers);
+            int[] convertedNumbers = ConvertsStringToInt(userInputNumbers);
+            int maxIndex = FindsMaxValueIndex(convertedNumbers);
+            int minIndex = FindsMinValueIndex(convertedNumbers);
             int sumOfRequaredNumbers = 0;
 
             if (minIndex < maxIndex)
@@ -27,11 +27,11 @@ namespace SumOfArray
                 }
             }
 
-            Print(sumOfRequaredNumbers);
+            return sumOfRequaredNumbers;
         }
 
         //Converts user input string to int array
-        public int[] StringToInt(string userInpput)
+        public int[] ConvertsStringToInt(string userInpput)
         {
             string[] arrayOfStrings = userInpput.Split(',');
             int[] userInputNumbers = new int[arrayOfStrings.Length];
@@ -45,7 +45,7 @@ namespace SumOfArray
         }
 
         //Calculates the biggest most right-hand side number in the array
-        public int MaxValueIndex(int[] userInputNumbers)
+        public int FindsMaxValueIndex(int[] userInputNumbers)
         {
             int maxValueIndex = 0;
 
@@ -60,7 +60,7 @@ namespace SumOfArray
         }
 
         //Calculates the smallest most left-hand side number in the array
-        public int MinValueIndex(int[] userInputNumbers)
+        public int FindsMinValueIndex(int[] userInputNumbers)
         {
             int minValueIndex = 0;
 
@@ -73,11 +73,5 @@ namespace SumOfArray
             }
             return minValueIndex;
         }
-
-        public void Print(int sumOfPartOfArray)
-        {
-            Console.WriteLine(sumOfPartOfArray);
-        }
-
     }
 }

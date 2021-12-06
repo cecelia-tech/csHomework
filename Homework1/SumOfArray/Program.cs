@@ -11,7 +11,7 @@ namespace SumOfArray
 
             SumBetweenNumbers sumOfArray = new SumBetweenNumbers();
             Console.WriteLine(userInputNumbers);
-            sumOfArray.SumOfRequaredNumbers(userInputNumbers);
+            Console.WriteLine(sumOfArray.PrintSumOfRequaredNumbers(userInputNumbers));
         }
     }
 }
