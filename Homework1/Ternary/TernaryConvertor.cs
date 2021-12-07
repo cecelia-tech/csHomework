@@ -3,18 +3,24 @@ using System.Text;
 
 namespace Ternary
 {
-    class TernaryConvertor
+    internal class TernaryConvertor
     {
-        //Method checks for numbers satisfying the task in the range given
-        public void CheckForAppropriateInteger(int numberFrom, int numberTo)
+        //Method prints numbers satisfying the task in the range given
+        public void PrintNumberWith2Twos(int numberFrom, int numberTo)
         {
             for (int i = numberFrom; i <= numberTo; i++)
             {
-                if (CheckForTwos(ConvertToTernary(i)))
+                if (!CheckForZeroAndNegatives(i) && CheckForTwos(ConvertToTernary(i)))
                 {
-                    NumberPrint(i);
+                    Console.WriteLine(i);
                 }
             }
+        }
+
+        //Checks for zeros and negative cases before converting to ternary
+        public bool CheckForZeroAndNegatives(int number)
+        {
+            return (number == 0 || number < 0);
         }
 
         //checks how many number 2 has the string and returns true if it has two 2s
@@ -38,30 +44,19 @@ namespace Ternary
         {
             StringBuilder ternaryString = new StringBuilder();
 
-            //since ternary base is 3, it is okay to hardcode it
+            if (number == 0)
+            {
+                return ternaryString;
+            }
+
             int quotient = number / 3;
             int remainder = number % 3;
 
-            //the ternaryString is made by adding each number to the front of
-            //the array
-            ternaryString.Insert(0, remainder);
+            ternaryString = ConvertToTernary(quotient);
 
-            if (quotient >= 3)
-            {
-                ternaryString.Insert(0, ConvertToTernary(quotient));
-            }
-            else
-            {
-                //ternary number system first number always is 1
-                ternaryString.Insert(0, 1);
-            }
+            ternaryString.Append(remainder);
 
             return ternaryString;
-        }
-
-        public void NumberPrint(int number)
-        {
-            Console.WriteLine(number);
         }
     }
 }

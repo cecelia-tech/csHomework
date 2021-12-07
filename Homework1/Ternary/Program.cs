@@ -8,12 +8,13 @@ namespace Ternary
         {
             Console.Write("Enter first integer: ");
             int countFrom = int.Parse(Console.ReadLine());
+
             Console.Write("Enter second integer: ");
             int countTo = int.Parse(Console.ReadLine());
 
             TernaryConvertor ternaryConvertor = new TernaryConvertor();
 
-            ternaryConvertor.CheckForAppropriateInteger(countFrom, countTo);
+            ternaryConvertor.PrintNumberWith2Twos(countFrom, countTo);
         }
     }
 }
