@@ -9,75 +9,38 @@ namespace DiagonalMatrix
 
     internal static class ExtensionMethod
     {
-        public static DiagonalMatrix AddsTwoDiagonalMatrices(this DiagonalMatrix firstMatrix, DiagonalMatrix secondMatrix)
+        public static DiagonalMatrix Add(this DiagonalMatrix firstMatrix, DiagonalMatrix secondMatrix)
         {
             int[] _firstDiagonal = firstMatrix.diagonalNumbers;
             int[] _secondDiagonal = secondMatrix.diagonalNumbers;
-
-            //can i pad the original array or create a new
-
+            int[] _paddedArray;
             int[] _sumedArray;
 
-            //summing if first array is shorter
             if (_firstDiagonal.Length < _secondDiagonal.Length)
             {
-                int[] _paddedArray = new int[_secondDiagonal.Length];
+                _paddedArray = new int[_secondDiagonal.Length];
 
-                for (int i = 0; i < _paddedArray.Length; i++)
-                {
-                    if (i < _firstDiagonal.Length)
-                    {
-                        _paddedArray[i] = _firstDiagonal[i];
-                    }
-                    else
-                    {
-                        _paddedArray[i] = 0;
-                    }
-
-                }
+                Array.Copy(_firstDiagonal, _paddedArray, _firstDiagonal.Length);
 
                 _sumedArray = new int[_paddedArray.Length];
 
-                for (int i = 0; i < _paddedArray.Length; i++)
-                {
-                    _sumedArray[i] = _paddedArray[i] + _secondDiagonal[i];
-                }
-
-                //Array.Resize(ref firstMatrix, secondMatrix.Length);
-
-            } //summing if second array is shorter
+                _sumedArray = _secondDiagonal.Zip(_paddedArray, (number1, number2) => number1 + number2).ToArray();
+            }
             else if (_firstDiagonal.Length > _secondDiagonal.Length)
             {
-                int[] _paddedArray = new int[_firstDiagonal.Length];
+                _paddedArray = new int[_firstDiagonal.Length];
 
-                for (int i = 0; i < _paddedArray.Length; i++)
-                {
-                    if (i < _secondDiagonal.Length)
-                    {
-                        _paddedArray[i] = _secondDiagonal[i];
-                    }
-                    else
-                    {
-                        _paddedArray[i] = 0;
-                    }
-
-                }
+                Array.Copy(_secondDiagonal, _paddedArray, _secondDiagonal.Length);
 
                 _sumedArray = new int[_paddedArray.Length];
 
-                for (int i = 0; i < _paddedArray.Length; i++)
-                {
-                    _sumedArray[i] = _paddedArray[i] + _firstDiagonal[i];
-                }
-            } //summing if both arrays are equal
+                _sumedArray = _firstDiagonal.Zip(_paddedArray, (number1, number2) => number1 + number2).ToArray();
+            }
             else
             {
                 _sumedArray = new int[_firstDiagonal.Length];
 
-                for (int i = 0; i < _firstDiagonal.Length; i++)
-                {
-                    _sumedArray[i] = _firstDiagonal[i] + _secondDiagonal[i];
-                }
+                _sumedArray = _firstDiagonal.Zip(_secondDiagonal, (number1, number2) => number1 + number2).ToArray();
             }
             return new DiagonalMatrix(_sumedArray);
         }
