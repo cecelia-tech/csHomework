@@ -9,7 +9,7 @@ namespace DiagonalMatrix
     internal class DiagonalMatrix
     {
         internal int[] diagonalNumbers { get; }
-        private readonly int size;
+        private int size;
 
         public int Size
         {
