@@ -9,17 +9,12 @@ namespace DiagonalMatrix
     internal class DiagonalMatrix
     {
         internal int[] diagonalNumbers { get; }
-        private int size;
-
-        public int Size
-        {
-            get => size;
-        }
+        public int Size { get; }
 
         public DiagonalMatrix(params int[] diagonalNumbers)
         {
             this.diagonalNumbers = diagonalNumbers;
-            size = diagonalNumbers == null ? 0 : diagonalNumbers.Length;
+            Size = diagonalNumbers == null ? 0 : diagonalNumbers.Length;
         }
 
         public int this[int i, int j]
@@ -54,14 +49,14 @@ namespace DiagonalMatrix
 
             if (this == null ||
                 _diagonalMatrix == null ||
-                _diagonalMatrix.size == 0 ||
-                size == 0 ||
-                size != _diagonalMatrix.size)
+                _diagonalMatrix.Size == 0 ||
+                Size == 0 ||
+                Size != _diagonalMatrix.Size)
             {
                 return false;
             }
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Size; i++)
             {
                 if (diagonalNumbers[i] != _diagonalMatrix.diagonalNumbers[i])
                 {
@@ -75,9 +70,9 @@ namespace DiagonalMatrix
         {
             StringBuilder _answer = new StringBuilder();
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Size; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < Size; j++)
                 {
                     if (i == j)
                     {

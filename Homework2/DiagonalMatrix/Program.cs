@@ -19,7 +19,7 @@ namespace DiagonalMatrix
             DiagonalMatrix diagonalMatrix2 = new DiagonalMatrix(numbersArray2);
 
             Console.WriteLine("Checking the Add method");
-            var addedMatrices = diagonalMatrix2.Add(diagonalMatrix);
+            var addedMatrices = diagonalMatrix.Add(diagonalMatrix2);
 
             Console.WriteLine(addedMatrices.ToString());
             Console.WriteLine("----------------");
