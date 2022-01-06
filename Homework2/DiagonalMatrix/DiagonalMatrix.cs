@@ -21,11 +21,18 @@ namespace DiagonalMatrix
         {
             get
             {
-                return i == j ? diagonalNumbers[i] : 0;
+                if (i >= 0 && i < Size && i == j)
+                {
+                    return diagonalNumbers[i];
+                }
+                else
+                {
+                    return 0;
+                }
             }
             set
             {
-                if (i == j)
+                if (i >= 0 && i < Size && i == j)
                 {
                     diagonalNumbers[i] = value;
                 }
@@ -34,31 +41,29 @@ namespace DiagonalMatrix
 
         public int Track()
         {
-            int _sum = 0;
+            int sum = 0;
 
-            foreach (var _number in diagonalNumbers)
+            foreach (var number in diagonalNumbers)
             {
-                _sum += _number;
+                sum += number;
             }
-            return _sum;
+            return sum;
         }
 
         public override bool Equals(object obj)
         {
-            var _diagonalMatrix = obj as DiagonalMatrix;
+            var matrixToBeCompared = obj as DiagonalMatrix;
 
             if (this == null ||
-                _diagonalMatrix == null ||
-                _diagonalMatrix.Size == 0 ||
-                Size == 0 ||
-                Size != _diagonalMatrix.Size)
+                matrixToBeCompared == null ||
+                Size != matrixToBeCompared.Size)
             {
                 return false;
             }
 
             for (int i = 0; i < Size; i++)
             {
-                if (diagonalNumbers[i] != _diagonalMatrix.diagonalNumbers[i])
+                if (diagonalNumbers[i] != matrixToBeCompared.diagonalNumbers[i])
                 {
                     return false;
                 }
@@ -68,7 +73,7 @@ namespace DiagonalMatrix
 
         public override string ToString()
         {
-            StringBuilder _answer = new StringBuilder();
+            StringBuilder answer = new StringBuilder();
 
             for (int i = 0; i < Size; i++)
             {
@@ -76,16 +81,16 @@ namespace DiagonalMatrix
                 {
                     if (i == j)
                     {
-                        _answer.Append(diagonalNumbers[i]).Append('\t');
+                        answer.Append(diagonalNumbers[i]).Append('\t');
                     }
                     else
                     {
-                        _answer.Append(0).Append('\t');
+                        answer.Append(0).Append('\t');
                     }
                 }
-                _answer.Append('\n');
+                answer.Append('\n');
             }
-            return _answer.ToString();
+            return answer.ToString();
         }
     }
 }

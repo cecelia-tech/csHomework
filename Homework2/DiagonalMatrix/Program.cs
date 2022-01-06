@@ -29,9 +29,10 @@ namespace DiagonalMatrix
             Console.WriteLine("----------------");
 
             Console.WriteLine("Indexer check: ");
-            Console.WriteLine(diagonalMatrix2[0, 0]);
+            Console.WriteLine(diagonalMatrix2[-4, -4]);
             Console.WriteLine(diagonalMatrix2[0, 7]);
             diagonalMatrix2[0, 0] = 44;
+            diagonalMatrix2[9, 9] = 99;
             Console.WriteLine(diagonalMatrix2[0, 0]);
             Console.WriteLine("----------------");
 
