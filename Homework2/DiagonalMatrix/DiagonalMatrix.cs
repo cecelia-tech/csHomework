@@ -8,12 +8,12 @@ namespace DiagonalMatrix
 {
     internal class DiagonalMatrix
     {
-        internal int[] diagonalNumbers { get; }
+        internal int[] DiagonalNumbers { get; }
         public int Size { get; }
 
         public DiagonalMatrix(params int[] diagonalNumbers)
         {
-            this.diagonalNumbers = diagonalNumbers;
+            this.DiagonalNumbers = diagonalNumbers;
             Size = diagonalNumbers == null ? 0 : diagonalNumbers.Length;
         }
 
@@ -23,7 +23,7 @@ namespace DiagonalMatrix
             {
                 if (i >= 0 && i < Size && i == j)
                 {
-                    return diagonalNumbers[i];
+                    return DiagonalNumbers[i];
                 }
                 else
                 {
@@ -34,7 +34,7 @@ namespace DiagonalMatrix
             {
                 if (i >= 0 && i < Size && i == j)
                 {
-                    diagonalNumbers[i] = value;
+                    DiagonalNumbers[i] = value;
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace DiagonalMatrix
         {
             int sum = 0;
 
-            foreach (var number in diagonalNumbers)
+            foreach (var number in DiagonalNumbers)
             {
                 sum += number;
             }
@@ -63,7 +63,7 @@ namespace DiagonalMatrix
 
             for (int i = 0; i < Size; i++)
             {
-                if (diagonalNumbers[i] != matrixToBeCompared.diagonalNumbers[i])
+                if (DiagonalNumbers[i] != matrixToBeCompared.DiagonalNumbers[i])
                 {
                     return false;
                 }
@@ -81,7 +81,7 @@ namespace DiagonalMatrix
                 {
                     if (i == j)
                     {
-                        answer.Append(diagonalNumbers[i]).Append('\t');
+                        answer.Append(DiagonalNumbers[i]).Append('\t');
                     }
                     else
                     {
