@@ -18,10 +18,10 @@ namespace Task1.Structs
 
         public override string ToString()
         {
-            var symbol = Accidental.Sharp == Accidental ? "#" :
-                         Accidental.Flat == Accidental ? "♭" : "";
+            var symbol = Accidental.Sharp == Accidental ? "Sharp" :
+                         Accidental.Flat == Accidental ? "Flat" : "";
 
-            return $"{Note}{symbol} ({Octave})";
+            return $"{Note} {symbol} ({Octave})";
         }
 
         public override bool Equals(object obj)
