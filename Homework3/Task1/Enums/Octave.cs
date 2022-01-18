@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task1.Enums
+﻿namespace Task1.Enums
 {
-    class Octave
+    public enum Octave
     {
+        SubContra,
+        Contra,
+        Great,
+        Small,
+        OneLine,
+        TwoLine,
+        ThreeLine,
+        FourLine,
+        FiveLine
     }
 }
