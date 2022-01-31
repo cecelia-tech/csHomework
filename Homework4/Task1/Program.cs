@@ -12,9 +12,7 @@ namespace Task1
             DiagonalMatrix<int> intMatrix1 = new DiagonalMatrix<int>(5, array1);
             DiagonalMatrix<int> intMatrix2 = new DiagonalMatrix<int>(5, array2);
 
-            DiagonalMatrix<int> addedMatrix = intMatrix1.Add(intMatrix2, Extension.AddElements);
-
-            //intMatrix1.ElementChangedHandler += intMatrix1.Anouncement;
+            DiagonalMatrix<int> addedMatrix = intMatrix1.Add(intMatrix2, (a, b) => a + b);
 
             MatrixTracker<int> matrixTracker = new MatrixTracker<int>(intMatrix1);
 
@@ -26,7 +24,7 @@ namespace Task1
 
             matrixTracker.Undo();
 
-            Console.WriteLine(intMatrix1[2, 2]);
+            Console.WriteLine(intMatrix1.ToString());
         }
     }
 }
