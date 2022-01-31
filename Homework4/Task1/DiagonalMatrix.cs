@@ -3,6 +3,10 @@ namespace Task1
 {
     public class DiagonalMatrix<T>
     {
+        public delegate void ElementChanged(int iIndexer, int jIndexer, T oldValue, T newValue);
+
+        public event ElementChanged ElementChangedHandler; // this one will save subscribed elements
+
         internal T[] DiagonalNumbers { get; }
         public int Size { get; }
 
@@ -51,9 +55,22 @@ namespace Task1
                 }
                 else if (i == j)
                 {
-                    DiagonalNumbers[i] = value;
+                    dynamic oldValue = DiagonalNumbers[i], newValue = value;
+                    if (oldValue != newValue)
+                    {
+                        ElementChangedHandler?.Invoke(i, j, oldValue, newValue);
+                    }
+                    else
+                    {
+                        DiagonalNumbers[i] = value;
+                    }
                 }
             }
+        }
+
+        public void Anouncement(int i, int j, T oldValue, T newValue)
+        {
+            Console.WriteLine($"Element at [{i}, {j}] has been changed from {oldValue} to {newValue}");
         }
     }
 }

@@ -1,12 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Task1
 {
-    class MatrixTracker
+    public class MatrixTracker<T>
     {
+        public DiagonalMatrix<T> MatrixReceived { get; }
+
+        public MatrixTracker(DiagonalMatrix<T> matrix)
+        {
+            MatrixReceived = matrix;
+            MatrixReceived.ElementChangedHandler += MatrixReceived.Anouncement;
+        }
+
+        public void Undo()
+        {
+            DiagonalMatrix<T>.
+        }
     }
 }
