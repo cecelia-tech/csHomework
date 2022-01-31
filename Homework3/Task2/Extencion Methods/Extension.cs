@@ -9,14 +9,9 @@ namespace Task2.ExtencionMethods
         {
             Stack<T> newStack = new Stack<T>();
 
-            if (stack is Stack<T> stack2)
+            while (!stack.IsEmpty())
             {
-                int stackLength = stack2.Index;
-
-                for (int i = 0; i < stack2.Index; i++)
-                {
-                    newStack.Push(stack2.stack[--stackLength]);
-                }
+                newStack.Push(stack.Pop());
             }
 
             return newStack;

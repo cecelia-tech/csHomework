@@ -27,10 +27,7 @@ namespace Task2
 
             Console.WriteLine("Printing reversed stack");
 
-            for (int i = 0; i < st2.Index; i++)
-            {
-                Console.WriteLine(st2.stack[i]);
-            }
+            Console.WriteLine(st2.ToString()); 
 
             //checking different generic type
             Stack<string> st3 = new Stack<string>();
@@ -42,6 +39,10 @@ namespace Task2
             st3.Push("5");
             //trying to push into a full stack
             st3.Push("6");
+
+            st3.Pop();
+
+            Console.WriteLine(st3.ToString());
         }
     }
 }

@@ -26,7 +26,12 @@ namespace Task1.Structs
 
         public override bool Equals(object obj)
         {
-            var key = (Key)obj;
+            if (obj is null)
+            {
+                return false;
+            }
+           
+               var key = (Key)obj;
 
             if (Octave != key.Octave)
             {

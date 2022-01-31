@@ -16,7 +16,7 @@ namespace Task1
 
             Console.WriteLine(key2);
             Console.WriteLine(gSharp.Equals(aFlat));
-            Console.WriteLine(key2.Equals(aFlat));
+            Console.WriteLine(key2.Equals(null));
             Console.WriteLine(key1.CompareTo(key2));
         }
     }
