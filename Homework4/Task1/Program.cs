@@ -14,13 +14,14 @@ namespace Task1
 
             DiagonalMatrix<int> addedMatrix = intMatrix1.Add(intMatrix2, (a, b) => a + b);
 
+            Console.WriteLine(addedMatrix.ToString());
+
+
             MatrixTracker<int> matrixTracker = new MatrixTracker<int>(intMatrix1);
 
             intMatrix1[0, 0] = 11;
             intMatrix1[1, 1] = 22;
             intMatrix1[2, 2] = 33;
-
-            intMatrix2[0, 0] = 11;
 
             matrixTracker.Undo();
 
