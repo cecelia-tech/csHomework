@@ -86,7 +86,7 @@ namespace Task1
 
         public override string ToString()
         {
-            StringBuilder answer = new StringBuilder();
+            StringBuilder diagonalMatrixString = new StringBuilder();
 
             for (int i = 0; i < Size; i++)
             {
@@ -94,16 +94,16 @@ namespace Task1
                 {
                     if (i == j)
                     {
-                        answer.Append(DiagonalNumbers[i]).Append('\t');
+                        diagonalMatrixString.Append(DiagonalNumbers[i]).Append('\t');
                     }
                     else
                     {
-                        answer.Append(this[i, j]).Append('\t');
+                        diagonalMatrixString.Append(this[i, j]).Append('\t');
                     }
                 }
-                answer.Append('\n');
+                diagonalMatrixString.Append('\n');
             }
-            return answer.ToString();
+            return diagonalMatrixString.ToString();
         }
     }
 }

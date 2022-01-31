@@ -16,7 +16,6 @@ namespace Task1
 
             Console.WriteLine(addedMatrix.ToString());
 
-
             MatrixTracker<int> matrixTracker = new MatrixTracker<int>(intMatrix1);
 
             intMatrix1[0, 0] = 11;
