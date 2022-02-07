@@ -6,13 +6,13 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            int[] array1 = { 1, 2, 3, 4, 5 };
-            int[] array2 = { 6, 7, 8, 9, 10 };
+            int[] array1 = { 1, 2, 3 };
+            int[] array2 = { 4, 5, 6, 7 };
 
-            DiagonalMatrix<int> intMatrix1 = new DiagonalMatrix<int>(5, array1);
-            DiagonalMatrix<int> intMatrix2 = new DiagonalMatrix<int>(5, array2);
+            DiagonalMatrix<int> intMatrix1 = new DiagonalMatrix<int>(3, array1);
+            DiagonalMatrix<int> intMatrix2 = new DiagonalMatrix<int>(4, array2);
 
-            DiagonalMatrix<int> addedMatrix = intMatrix1.Add(intMatrix2, (a, b) => a + b);
+            DiagonalMatrix<int> addedMatrix = intMatrix2.Add(intMatrix2, (a, b) => a + b);
 
             Console.WriteLine(addedMatrix.ToString());
 

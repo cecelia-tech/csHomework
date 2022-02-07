@@ -3,17 +3,10 @@ using System.Text;
 
 namespace Task1
 {
-    public class UndoArgs : EventArgs
+    public class DiagonalMatrix<T>
     {
-        public int I { get; set; }
-        public dynamic OldValue { get; set; }
-        public dynamic NewValue { get; set; }
-    }
-
-        public class DiagonalMatrix<T>
-    {
-        public event EventHandler<UndoArgs> ElementChangedHandler; // this one will save subscribed elements
-        public UndoArgs undoArgs;
+        public event EventHandler<UndoArgs<T>> ElementChangedHandler;
+        public UndoArgs<T> undoArgs { get; } = new UndoArgs<T>();
         public T[] DiagonalNumbers { get; }
         public int Size { get; }
 
@@ -64,22 +57,19 @@ namespace Task1
                 {
                     if (!DiagonalNumbers[i].Equals(value))
                     {
-                        UndoArgs undoArgs1 = new UndoArgs();
+                        undoArgs.I = i;
+                        undoArgs.OldValue = DiagonalNumbers[i];
+                        undoArgs.NewValue = value;
 
-                        undoArgs1.I = i;
-                        undoArgs1.OldValue = DiagonalNumbers[i];
-                        undoArgs1.NewValue = value;
-
-                        undoArgs = undoArgs1;
+                        DiagonalNumbers[i] = value;
 
                         ElementChangedHandler?.Invoke(this, undoArgs);
-                        DiagonalNumbers[i] = value;
                     }
                 }
             }
         }
 
-        public void Anouncement(object sender, UndoArgs e)
+        public void Anouncement(object sender, UndoArgs<T> e)
         {
             Console.WriteLine($"Element at [{e.I}, {e.I}] has been changed from {e.OldValue} to {e.NewValue}");
         }
@@ -92,17 +82,12 @@ namespace Task1
             {
                 for (int j = 0; j < Size; j++)
                 {
-                    if (i == j)
-                    {
-                        diagonalMatrixString.Append(DiagonalNumbers[i]).Append('\t');
-                    }
-                    else
-                    {
-                        diagonalMatrixString.Append(this[i, j]).Append('\t');
-                    }
+                    diagonalMatrixString.Append(this[i, j]).Append('\t');
                 }
+
                 diagonalMatrixString.Append('\n');
             }
+
             return diagonalMatrixString.ToString();
         }
     }

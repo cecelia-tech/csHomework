@@ -4,20 +4,25 @@ namespace Task1
     public class MatrixTracker<T>
     {
         public DiagonalMatrix<T> MatrixReceived { get; }
-
+        private UndoArgs<T> ReceivedUndoArgs { get; }
         public MatrixTracker(DiagonalMatrix<T> diagonalMatrix)
         {
+            if (diagonalMatrix is null)
+            {
+                throw new ArgumentNullException();
+            }
+
             MatrixReceived = diagonalMatrix;
-            //here we subscribe to the event
+            ReceivedUndoArgs = diagonalMatrix.undoArgs;
+
             MatrixReceived.ElementChangedHandler += MatrixReceived.Anouncement;
         }
 
         public void Undo()
         {
-            if (MatrixReceived.undoArgs != null)
+            if (ReceivedUndoArgs != null)
             {
-                MatrixReceived[MatrixReceived.undoArgs.I, MatrixReceived.undoArgs.I] =
-                    MatrixReceived.undoArgs.OldValue;
+                MatrixReceived[ReceivedUndoArgs.I, ReceivedUndoArgs.I] = ReceivedUndoArgs.OldValue;
             }
             else
             {
