@@ -1,12 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SparseMatrix
 {
-    class ElementDirections
+    public class ElementDirections
     {
+        public int row;
+        public int column;
+
+        public ElementDirections(int column, int row)
+        {
+            this.row = row;
+            this.column = column;
+        }
+
+        
     }
 }
