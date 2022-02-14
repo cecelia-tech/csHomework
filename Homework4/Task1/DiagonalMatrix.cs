@@ -6,7 +6,6 @@ namespace Task1
     public class DiagonalMatrix<T>
     {
         public event EventHandler<UndoArgs<T>> ElementChangedHandler;
-        public UndoArgs<T> undoArgs { get; } = new UndoArgs<T>();
         public T[] DiagonalNumbers { get; }
         public int Size { get; }
 
@@ -57,22 +56,16 @@ namespace Task1
                 {
                     if (!DiagonalNumbers[i].Equals(value))
                     {
-                        undoArgs.I = i;
-                        undoArgs.OldValue = DiagonalNumbers[i];
-                        undoArgs.NewValue = value;
-
+                        T oldvalue = DiagonalNumbers[i];
                         DiagonalNumbers[i] = value;
 
-                        ElementChangedHandler?.Invoke(this, undoArgs);
+                        ElementChangedHandler?.Invoke(this, new UndoArgs<T>(i, oldvalue, value));
                     }
                 }
             }
         }
 
-        public void Anouncement(object sender, UndoArgs<T> e)
-        {
-            Console.WriteLine($"Element at [{e.I}, {e.I}] has been changed from {e.OldValue} to {e.NewValue}");
-        }
+        
 
         public override string ToString()
         {
