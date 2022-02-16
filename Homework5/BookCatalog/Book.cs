@@ -38,6 +38,7 @@ namespace BookCatalog
                 }
             }
 
+            this.ISBN = ISBN.UnifyISBN();
         }
     }
 }

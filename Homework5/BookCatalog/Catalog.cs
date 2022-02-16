@@ -10,6 +10,15 @@ namespace BookCatalog
     {
         private List<Book> CatalogOfBooks = new List<Book>();
 
+        public void AddBook(Book book)
+        {
+            if (book is null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            CatalogOfBooks.Add(book);
+        }
 
     }
 }
