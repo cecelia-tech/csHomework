@@ -34,5 +34,15 @@ namespace CompanyVacations
 
             return r == 0 ? false : true;
         }
+
+        public double AverageVacationLength()
+        {
+            return allVacationsRecords.Distinct()
+                                      .Select(x => x.VacationsTaken.TotalDays)
+                                      .Average();
+        }
+
+
     }
+
 }
