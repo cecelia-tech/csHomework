@@ -20,5 +20,19 @@ namespace BookCatalog
             CatalogOfBooks.Add(book);
         }
 
+        public Book GetBook(string ISBN)
+        {
+            ISBN = ISBN.UnifyISBN();
+
+            foreach (var book in CatalogOfBooks)
+            {
+                if (book.ISBN.Equals(ISBN))
+                {
+                    return book;
+                }
+            }
+
+            throw new Exception("There is no book with ISBN provided");
+        }
     }
 }

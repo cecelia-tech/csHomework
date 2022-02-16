@@ -6,7 +6,7 @@ namespace BookCatalog
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Catalog bookCatalog = new Catalog();
         }
     }
 }
