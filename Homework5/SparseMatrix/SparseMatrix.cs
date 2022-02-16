@@ -79,6 +79,29 @@ namespace SparseMatrix
             }
         }
 
+        public override string ToString()
+        {
+            StringBuilder sparseMatrix = new StringBuilder();
+
+            int newLineCount = default;
+
+            foreach (var item in this)
+            {
+                if (newLineCount < Columns)
+                {
+                    sparseMatrix.Append(item).Append('\t');
+                    newLineCount++;
+
+                    if (newLineCount == Columns)
+                    {
+                        newLineCount = 0;
+                        sparseMatrix.Append('\n');
+                    }
+
+                }
+            }
+            return sparseMatrix.ToString();
+        }
         public IEnumerator<int> GetEnumerator()
         {
             for (int i = 0; i < Rows; i++)
