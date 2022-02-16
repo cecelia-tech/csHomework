@@ -27,5 +27,57 @@ namespace SparseMatrix
 
         }
 
+        public int this[int column, int row]
+        {
+            get
+            {
+                if (row < 0 ||
+                    column < 0 ||
+                    row >= Rows ||
+                    column >= Columns)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                int itemToReturn = default;
+
+                foreach (var element in arrayElements)
+                {
+                    if (element.Key.Equals(new ElementDirections(column, row)))
+                    {
+                        itemToReturn = element.Value;
+                        break;
+                    }
+
+                }
+
+                return itemToReturn;
+            }
+            set
+            {
+                if (row < 0 ||
+                    column < 0 ||
+                    row >= Rows ||
+                    column >= Columns)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else
+                {
+                    ElementDirections directions = new ElementDirections(column, row);
+
+                    if (arrayElements.ContainsKey(directions))
+                    {
+                        arrayElements[directions] = value;
+                    }
+                    else
+                    {
+                        arrayElements.Add(directions, value);
+                    }
+                }
+            }
+        }
+
+
     }
 }
