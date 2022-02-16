@@ -8,5 +8,8 @@ namespace BookCatalog
 {
     class Catalog
     {
+        private List<Book> CatalogOfBooks = new List<Book>();
+
+
     }
 }
