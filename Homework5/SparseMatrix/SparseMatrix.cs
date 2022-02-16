@@ -101,6 +101,28 @@ namespace SparseMatrix
             }
         }
 
-        
+        public IEnumerable<(int, int, int)> GetNozeroElements()
+        {
+            return arrayElements.Where(x => x.Value != 0)
+                .Select(x => (x.Key.column, x.Key.row, x.Value))
+                .OrderBy(x => x.column)
+                .ThenBy(x => x.row)
+                .ToList();
+        }
+
+        public int GetCount(int x)
+        {
+            int count = default;
+
+            foreach (var item in this)
+            {
+                if (item == x)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
     }
 }
