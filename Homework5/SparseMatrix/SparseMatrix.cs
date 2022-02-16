@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,28 @@ namespace SparseMatrix
             }
         }
 
+        public IEnumerator<int> GetEnumerator()
+        {
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    yield return this[j, i];
+                }
+            }
+        }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    yield return this[j, i];
+                }
+            }
+        }
+
+        
     }
 }
