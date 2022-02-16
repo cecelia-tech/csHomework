@@ -42,6 +42,13 @@ namespace CompanyVacations
                                       .Average();
         }
 
+        public IEnumerable<(string, double)> GetAverageOfEachEmployee()
+        {
+            return allVacationsRecords.Distinct().GroupBy(x => x.Name)
+                                      .Select(x => (x.Key, x.Select(c => c.VacationsTaken.TotalDays).Average()))
+                                      .ToList();
+        }
+
 
     }
 
