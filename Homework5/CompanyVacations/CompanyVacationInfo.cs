@@ -24,5 +24,15 @@ namespace CompanyVacations
 
             allVacationsRecords.Add(x);
         }
+
+        public bool AlreadyOnVacation(EmployeeVacations a)
+        {
+            var r = allVacationsRecords.Where(x => x.Name.Equals(a.Name))
+                                       .Where(x => a.vacationsStart <= x.vacationsEnd &&
+                                                    a.vacationsEnd >= x.vacationsStart)
+                                       .Count();
+
+            return r == 0 ? false : true;
+        }
     }
 }
