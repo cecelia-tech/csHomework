@@ -28,5 +28,31 @@ namespace Task1
 
             var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }
+
+        public List<string> CollectInfo<T>(T obj)
+        {
+            var type = typeof(T);
+            var memberInfo = type.GetMembers();
+            List<string> trackingPropertyElements = new List<string>();
+
+            var p = type.GetCustomAttribute<TrackingEntityAttribute>();
+
+            if (p is not null)
+            {
+                var filteredMemberInfo = memberInfo
+                    .Where(x => x.GetCustomAttribute<TrackingPropertyAttribute>() != null)
+                    .Select(x => x)
+                    .ToList();
+
+                foreach (var item in filteredMemberInfo)
+                {
+                    var attribute = item.GetCustomAttribute<TrackingPropertyAttribute>();
+
+                    trackingPropertyElements.Add($"{attribute.PropertyName ?? item.Name}: " +
+                        $"{(item.MemberType == MemberTypes.Field ? ((FieldInfo)item).GetValue(obj) : ((PropertyInfo)item).GetValue(obj))}");
+                }
+            }
+            return trackingPropertyElements;
+        }
     }
 }
