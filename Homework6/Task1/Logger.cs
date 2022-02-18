@@ -9,15 +9,16 @@ namespace Task1
 {
     public class Logger<T>
     {
-        public string JsonFileName { get; set; }
+        private string jsonFileName;
 
         public Logger(string jsonFileName)
         {
-            if (jsonFileName is null)
+            if (string.IsNullOrEmpty(jsonFileName))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
-            JsonFileName = jsonFileName;
+
+            this.jsonFileName = jsonFileName + ".xml";
         }
 
 
