@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Task1
 {
-    public class Logger<T>
+    [Serializable]
+    public class Logger
     {
         private string jsonFileName;
 
@@ -22,7 +21,6 @@ namespace Task1
 
             this.jsonFileName = jsonFileName + ".xml";
         }
-
 
         public void Tracker<T>(T obj)
         {
