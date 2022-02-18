@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Task1
 {
@@ -22,11 +24,19 @@ namespace Task1
         }
 
 
-        public void Tracker(object obj)
+        public void Tracker<T>(T obj)
         {
-            var type = typeof(T);
+            List<string> infoToStore = CollectInfo(obj);
 
-            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            if (infoToStore.Count() != 0)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<string>));
+
+                using (FileStream stream = new FileStream(jsonFileName, FileMode.OpenOrCreate))
+                {
+                    serializer.Serialize(stream, infoToStore);
+                }
+            }
         }
 
         public List<string> CollectInfo<T>(T obj)
