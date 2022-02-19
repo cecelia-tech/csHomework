@@ -49,34 +49,20 @@ namespace CompanyVacations
                                       .ToList();
         }
 
+        //method returns first int as a month, second int as a number of employees
         public IEnumerable<(int, int)> EmployeesPerMonth()
         {
-            Dictionary<int, int> a = new Dictionary<int, int>();
+            var vacationStartMonths = allVacationsRecords.Select(x => x.VacationsStart.Month);
 
-            var start = allVacationsRecords.Select(x => x.vacationsStart);
+            var vacationsEndMonths = allVacationsRecords.Where(x => x.VacationsStart.Month != x.VacationsEnd.Month)
+                                         .Select(x => x.VacationsEnd.Month);
 
-            var end = allVacationsRecords.Where(x => x.vacationsStart.Month != x.vacationsEnd.Month)
-                                         .Select(x => x.vacationsEnd);
-
-            start.Concat(end).GroupBy(x => x.Month)
-                             .Select(x => (x.Key, x.Count())).ToList().
-                             ForEach(x => a.Add(x.Key, x.Item2));
-
-            foreach (var month in Enumerable.Range(1, 12))
-            {
-                if (a.ContainsKey(month))
-                {
-                    continue;
-                }
-                else
-                {
-                    a.Add(month, 0);
-                }
-            }
-            return a.OrderBy(x => x.Key).Select(x => (x.Key, x.Value));
+            return vacationStartMonths.Concat(vacationsEndMonths).GroupBy(x => x)
+                                    .Select(x => (x.Key, x.Count()))
+                                    .OrderBy(x => x.Key);
         }
 
-        
+
 
         public IEnumerable<(DateTime, DateTime)> DatesWithNoVacations()
         {
