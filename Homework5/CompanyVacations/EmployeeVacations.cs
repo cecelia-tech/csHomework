@@ -10,8 +10,8 @@ namespace CompanyVacations
     {
         public string Name { get; set; }
         public TimeSpan VacationsTaken { get; set; }
-        public DateTime vacationsStart { get; set; }
-        public DateTime vacationsEnd { get; set; }
+        public DateTime VacationsStart { get; set; }
+        public DateTime VacationsEnd { get; set; }
 
         public EmployeeVacations(string name, DateTime firstVacationDay, DateTime lastVacationDay)
         {
@@ -31,8 +31,8 @@ namespace CompanyVacations
             }
             else
             {
-                vacationsStart = firstVacationDay;
-                vacationsEnd = lastVacationDay;
+                VacationsStart = firstVacationDay;
+                VacationsEnd = lastVacationDay;
 
                 VacationsTaken = lastVacationDay.Subtract(firstVacationDay);
             }
