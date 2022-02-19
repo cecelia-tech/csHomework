@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
+using System.Text.Json;
 
 namespace Task1
 {
@@ -19,7 +20,7 @@ namespace Task1
                 throw new ArgumentException();
             }
 
-            this.jsonFileName = jsonFileName + ".xml";
+            this.jsonFileName = jsonFileName + ".json";
         }
 
         public void Tracker<T>(T obj)
@@ -28,11 +29,9 @@ namespace Task1
 
             if (infoToStore.Count() != 0)
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<string>));
-
-                using (FileStream stream = new FileStream(jsonFileName, FileMode.OpenOrCreate))
+                using (var fs = File.Create(jsonFileName))
                 {
-                    serializer.Serialize(stream, infoToStore);
+                    JsonSerializer.SerializeAsync(fs, infoToStore);
                 }
             }
         }
