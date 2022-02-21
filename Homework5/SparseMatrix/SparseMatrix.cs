@@ -40,19 +40,9 @@ namespace SparseMatrix
                     throw new IndexOutOfRangeException();
                 }
 
-                int itemToReturn = default;
+                arrayElements.TryGetValue(new ElementDirections(column, row), out int value);
 
-                foreach (var element in arrayElements)
-                {
-                    if (element.Key.Equals(new ElementDirections(column, row)))
-                    {
-                        itemToReturn = element.Value;
-                        break;
-                    }
-
-                }
-
-                return itemToReturn;
+                return value;
             }
             set
             {
@@ -62,6 +52,10 @@ namespace SparseMatrix
                     column >= Columns)
                 {
                     throw new IndexOutOfRangeException();
+                }
+                else if(value == 0)
+                {
+                    return;
                 }
                 else
                 {
@@ -97,7 +91,6 @@ namespace SparseMatrix
                         newLineCount = 0;
                         sparseMatrix.Append('\n');
                     }
-
                 }
             }
             return sparseMatrix.ToString();
@@ -127,9 +120,9 @@ namespace SparseMatrix
         public IEnumerable<(int, int, int)> GetNozeroElements()
         {
             return arrayElements.Where(x => x.Value != 0)
-                .Select(x => (x.Key.column, x.Key.row, x.Value))
-                .OrderBy(x => x.column)
-                .ThenBy(x => x.row)
+                .Select(x => (x.Key.Column, x.Key.Row, x.Value))
+                .OrderBy(x => x.Column)
+                .ThenBy(x => x.Row)
                 .ToList();
         }
 

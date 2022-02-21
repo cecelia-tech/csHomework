@@ -4,21 +4,21 @@ namespace SparseMatrix
 {
     public class ElementDirections
     {
-        public int row;
-        public int column;
+        public int Row;
+        public int Column;
 
         public ElementDirections(int column, int row)
         {
-            this.row = row;
-            this.column = column;
+            Row = row;
+            Column = column;
         }
 
         public override bool Equals(object obj)
         {
             if (obj is ElementDirections receivedDirections)
             {
-                if (receivedDirections.row == row &&
-                    receivedDirections.column == column)
+                if (receivedDirections.Row == Row &&
+                    receivedDirections.Column == Column)
                 {
                     return true;
                 }
@@ -28,7 +28,7 @@ namespace SparseMatrix
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(column, row);
+            return HashCode.Combine(Column, Row);
         }
     }
 }

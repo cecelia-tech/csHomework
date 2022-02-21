@@ -17,8 +17,8 @@ namespace SparseMatrix
             sparceMatrix[0, 2] = 6;
             sparceMatrix[1, 0] = 7;
             sparceMatrix[2, 2] = 8;
-            sparceMatrix[3, 0] = 9;
             sparceMatrix[4, 2] = 0;
+            sparceMatrix[3, 0] = 9;
 
             //Test on 3 columns and 5 rows
             /*sparceMatrix[0, 4] = 2;
