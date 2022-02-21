@@ -37,5 +37,16 @@ namespace BookCatalog
 
             this.ISBN = ISBN.UnifyISBN();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Book book &&
+                   ISBN == book.ISBN;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ISBN);
+        }
     }
 }

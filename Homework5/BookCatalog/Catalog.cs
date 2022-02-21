@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookCatalog
 {
@@ -14,7 +15,16 @@ namespace BookCatalog
                 throw new ArgumentNullException();
             }
 
-            CatalogOfBooks.Add(book);
+            var bookAlradyInCatalog = CatalogOfBooks.Find(x => x.Equals(book));
+
+            if (bookAlradyInCatalog is not null)
+            {
+                CatalogOfBooks[CatalogOfBooks.IndexOf(bookAlradyInCatalog)] = book;
+            }
+            else
+            {
+                CatalogOfBooks.Add(book);
+            }
         }
 
         public Book GetBook(string ISBN)
