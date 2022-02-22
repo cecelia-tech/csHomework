@@ -36,7 +36,7 @@ namespace Task1
             }
         }
 
-        public List<string> CollectInfo<T>(T obj)
+        private List<string> CollectInfo<T>(T obj)
         {
             var type = typeof(T);
             var memberInfo = type.GetMembers();

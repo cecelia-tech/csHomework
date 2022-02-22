@@ -11,7 +11,7 @@ namespace Task1
         [TrackingProperty(PropertyName = "Last name")]
         public string LastNmae { get; set; }
         [TrackingProperty(PropertyName = "Age")]
-        public int age;
+        public int Age;
 
 
         public Person()
@@ -22,7 +22,7 @@ namespace Task1
         {
             Name = name;
             LastNmae = lastNmae;
-            this.age = age;
+            Age = age;
             Address = address;
         }
     }
