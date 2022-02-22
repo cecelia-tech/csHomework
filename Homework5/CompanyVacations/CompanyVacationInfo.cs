@@ -30,7 +30,7 @@ namespace CompanyVacations
                                                     a.VacationsEnd >= x.VacationsStart)
                                        .Count();
 
-            return r == 0 ? false : true;
+            return r != 0;
         }
 
         public double AverageVacationLength()
@@ -50,14 +50,19 @@ namespace CompanyVacations
         //method returns first int as a month, second int as a number of employees
         public IEnumerable<(int, int)> EmployeesPerMonth()
         {
-            var vacationStartMonths = allVacationsRecords.Select(x => x.VacationsStart.Month);
+            List<(int Month, EmployeeVacations employee)> monthOfVacationAndEmployee;
 
-            var vacationsEndMonths = allVacationsRecords.Where(x => x.VacationsStart.Month != x.VacationsEnd.Month)
-                                         .Select(x => x.VacationsEnd.Month);
+            monthOfVacationAndEmployee = allVacationsRecords.Select(employee =>
+                                            (employee.VacationsStart.Month, employee))
+                                            .ToList();
 
-            return vacationStartMonths.Concat(vacationsEndMonths).GroupBy(x => x)
-                                    .Select(x => (x.Key, x.Count()))
-                                    .OrderBy(x => x.Key);
+            monthOfVacationAndEmployee.AddRange(allVacationsRecords
+                .Where(employee => employee.VacationsStart.Month != employee.VacationsEnd.Month)
+                .Select(employee => (employee.VacationsEnd.Month, employee))
+                .ToList());
+
+            return monthOfVacationAndEmployee.GroupBy(monthAndEmployee => monthAndEmployee.Month)
+                .Select(monthAndEmployee => (monthAndEmployee.Key, monthAndEmployee.Select(x => x.employee).Count()));
         }
 
         public IEnumerable<DateTime> DatesWithNoVacations()
