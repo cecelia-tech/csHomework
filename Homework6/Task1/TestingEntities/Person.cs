@@ -14,10 +14,6 @@ namespace Task1
         public int Age;
 
 
-        public Person()
-        {
-        }
-
         public Person(string name, string lastNmae, int age, string address)
         {
             Name = name;
