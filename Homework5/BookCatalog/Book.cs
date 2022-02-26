@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace BookCatalog
+{
+    public class Book
+    {
+        public string Title { get; }
+        public DateTime? PublicationDate { get; }
+        public HashSet<string> Authors { get; } = new HashSet<string>();
+        public string ISBN { get; }
+
+        public Book(string title, DateTime? publicationDate, string ISBN, params string[] authors)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentException();
+            }
+            else
+            {
+                Title = title;
+            }
+
+            PublicationDate = publicationDate;
+
+            if (authors.Length == 0)
+            {
+                throw new ArgumentException("At least one or more authors needed.");
+            }
+            else
+            {
+                foreach (var author in authors)
+                {
+                    Authors.Add(author);
+                }
+            }
+
+            this.ISBN = ISBN.UnifyISBN();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Book book &&
+                   ISBN == book.ISBN;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ISBN);
+        }
+    }
+}
