@@ -24,7 +24,6 @@ namespace SparseMatrix
                 Rows = rows;
                 Columns = columns;
             }
-
         }
 
         public int this[int column, int row]
@@ -52,21 +51,20 @@ namespace SparseMatrix
                 {
                     throw new IndexOutOfRangeException();
                 }
-                else if(value == 0)
-                {
-                    return;
-                }
                 else
                 {
-                    ElementDirections directions = new ElementDirections(column, row);
+                    if (value != 0)
+                    {
+                        ElementDirections directions = new ElementDirections(column, row);
 
-                    if (arrayElements.ContainsKey(directions))
-                    {
-                        arrayElements[directions] = value;
-                    }
-                    else
-                    {
-                        arrayElements.Add(directions, value);
+                        if (arrayElements.ContainsKey(directions))
+                        {
+                            arrayElements[directions] = value;
+                        }
+                        else
+                        {
+                            arrayElements.Add(directions, value);
+                        }
                     }
                 }
             }
@@ -107,13 +105,7 @@ namespace SparseMatrix
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            for (int i = 0; i < Rows; i++)
-            {
-                for (int j = 0; j < Columns; j++)
-                {
-                    yield return this[j, i];
-                }
-            }
+            return this.GetEnumerator();
         }
 
         public IEnumerable<(int, int, int)> GetNozeroElements()
